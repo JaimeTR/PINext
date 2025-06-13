@@ -1,128 +1,136 @@
-# ⚡ ShipFree
+# ⚡ ShipFree (by JaimeTR)
 
-Hi there! 👋
+¡Hola! 👋
 
-ShipFree is a free alternative to ShipFast, designed to simplify and optimize your shipping process. It’s built using modern web technologies like Next.js, Supabase, Stripe, LemonSqueezy, Drizzle ORM and Mailgun.
+**ShipFree** es una alternativa gratuita a plataformas como ShipFast, diseñada para simplificar y optimizar tu proceso de envíos. Está construida con tecnologías web modernas como **Next.js**, **Supabase**, **Stripe**, **LemonSqueezy**, **Drizzle ORM** y **Mailgun**.
 
-## Features
+---
 
-- SEO Optimisation
-- User authentication with Supabase
-- Stripe and LemonSqueezy integration
-- Email notifications via Mailgun
-- Modern UI built with Next.js and TailwindCSS
+## ✨ Características
 
-## Docker Setup
+* Optimización SEO
+* Autenticación de usuarios con Supabase
+* Integración con Stripe y LemonSqueezy
+* Notificaciones por correo vía Mailgun
+* Interfaz moderna construida con Next.js y TailwindCSS
 
-ShipFree provides Docker configurations for both **development** and **production** environments. Below, you'll find the structure of the Docker files and the commands to get started.
+---
 
-### Docker File Structure
+## 🐳 Configuración con Docker
 
-The Docker files are organized as follows:
+**ShipFree** ofrece configuraciones Docker tanto para entornos de **desarrollo** como de **producción**. A continuación, te mostramos cómo están organizados los archivos y cómo iniciar tu entorno.
+
+### 📁 Estructura de archivos Docker
 
 ```
 docker
 ├── dev
-│   ├── Dockerfile                  # Dockerfile for development
-│   ├── docker-compose.yml          # Base development setup
-│   ├── docker-compose.mongodb.yml  # Development setup with MongoDB
-│   └── docker-compose.postgres.yml # Development setup with PostgreSQL
+│   ├── Dockerfile                  # Dockerfile para desarrollo
+│   ├── docker-compose.yml          # Configuración base para desarrollo
+│   ├── docker-compose.mongodb.yml  # Desarrollo con MongoDB
+│   └── docker-compose.postgres.yml # Desarrollo con PostgreSQL
 └── prod
-    ├── Dockerfile                  # Dockerfile for production
-    ├── docker-compose.yml          # Base production setup
-    ├── docker-compose.mongodb.yml  # Production setup with MongoDB
-    └── docker-compose.postgres.yml # Production setup with PostgreSQL
+    ├── Dockerfile                  # Dockerfile para producción
+    ├── docker-compose.yml          # Configuración base para producción
+    ├── docker-compose.mongodb.yml  # Producción con MongoDB
+    └── docker-compose.postgres.yml # Producción con PostgreSQL
 ```
 
-### Development Environment
+---
 
-In development, the project runs in **watch mode**, meaning it automatically detects changes in your code and rebuilds the application. This is ideal for local development but should **never** be used in production.
+## 🔧 Entorno de Desarrollo
 
-#### Commands for Development
+En desarrollo, el proyecto se ejecuta en **modo observación (watch mode)**, lo que significa que detecta automáticamente los cambios y reconstruye la aplicación. Ideal para desarrollo local, **no debe usarse en producción**.
 
-1. **Base Setup** (without a database):
+### 🛠️ Comandos para desarrollo
+
+1. **Configuración base** (sin base de datos):
 
    ```bash
    docker-compose -f docker/dev/docker-compose.yml up --build
    ```
 
-2. **With PostgreSQL**:
+2. **Con PostgreSQL**:
 
    ```bash
    docker-compose -f docker/dev/docker-compose.yml -f docker/dev/docker-compose.postgres.yml up --build
    ```
 
-3. **With MongoDB**:
+3. **Con MongoDB**:
+
    ```bash
    docker-compose -f docker/dev/docker-compose.yml -f docker/dev/docker-compose.mongodb.yml up --build
    ```
 
-#### Why Watch Mode?
+### 🤔 ¿Por qué usar modo observación?
 
-- **Watch mode** ensures that your changes are reflected in real-time without manually restarting the server.
-- It’s perfect for development but **not suitable for production** due to performance and security concerns.
+* Refleja cambios en tiempo real sin reiniciar el servidor manualmente.
+* Ideal para desarrollo, pero **no recomendable para producción** por temas de rendimiento y seguridad.
 
 ---
 
-### Production Environment
+## 🚀 Entorno de Producción
 
-The production environment is optimized for performance and security. It uses a multi-stage build to reduce the image size and includes only the necessary dependencies.
+El entorno de producción está optimizado para **rendimiento** y **seguridad**. Utiliza una compilación multi-etapa que reduce el tamaño de la imagen y solo incluye las dependencias necesarias.
 
-#### Commands for Production
+### 🛠️ Comandos para producción
 
-1. **Base Setup** (without a database):
+1. **Configuración base** (sin base de datos):
 
    ```bash
    docker-compose -f docker/prod/docker-compose.yml up --build -d
    ```
 
-2. **With PostgreSQL**:
+2. **Con PostgreSQL**:
 
    ```bash
    docker-compose -f docker/prod/docker-compose.yml -f docker/prod/docker-compose.postgres.yml up --build -d
    ```
 
-3. **With MongoDB**:
+3. **Con MongoDB**:
+
    ```bash
    docker-compose -f docker/prod/docker-compose.yml -f docker/prod/docker-compose.mongodb.yml up --build -d
    ```
 
-#### Key Differences in Production
+### 🔍 Diferencias clave en producción
 
-- **No watch mode**: The application is pre-built, and changes require a rebuild.
-- **Optimized images**: Smaller image size and faster startup times.
-- **Environment variables**: Ensure all required variables (e.g., `DATABASE_URL`, `API_KEY`) are set.
-
----
-
-### Portainer Integration
-
-Portainer is included in both development and production setups to help you manage your Docker containers via a web interface.
-
-- **Access Portainer**: `http://localhost:9000`
-- **Default credentials**: Set up during the first login.
+* **Sin modo observación**: La aplicación está precompilada y requiere recompilación ante cualquier cambio.
+* **Imágenes optimizadas**: Tamaño reducido y arranque más rápido.
+* **Variables de entorno**: Asegúrate de definir todas (por ejemplo: `DATABASE_URL`, `API_KEY`, etc.)
 
 ---
 
-### Disclaimer
+## 💻 Integración con Portainer
 
-- **Development Mode**: Uses watch mode for real-time updates. Not suitable for production.
-- **Production Mode**: Optimized for performance and security. Requires a rebuild for changes.
+**Portainer** está incluido en los entornos de desarrollo y producción para facilitar la gestión de contenedores Docker desde una interfaz web.
 
----
-
-## Docs
-
-For full documentation, visit: [ShipFree Docs](https://shipfree.idee8.agency/docs)
-
-## Code of Conduct
-
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
-
-## Contributing
-
-For people who want to contribute, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
+* **Acceso a Portainer**: `http://localhost:9000`
+* **Credenciales iniciales**: Se configuran en el primer inicio.
 
 ---
 
-Cooked for you with ❤️ by [Idee8](https://idee8.agency)
+## ⚠️ Aviso
+
+* **Modo Desarrollo**: Usa modo observación. No recomendado para producción.
+* **Modo Producción**: Optimizado para rendimiento y seguridad. Requiere recompilar para reflejar cambios.
+
+---
+
+## 📂 Documentación
+
+Consulta la documentación completa en:
+👉 [Docs ShipFree - JaimeTR](https://shipfree.idee8.agency/docs)
+
+---
+
+## 📜 Código de Conducta
+
+Por favor, revisa nuestro [Código de Conducta](CODE_OF_CONDUCT.md) antes de contribuir.
+
+---
+
+## 🤝 Cómo contribuir
+
+Si deseas colaborar con el proyecto, por favor consulta el archivo [CONTRIBUTING.md](CONTRIBUTING.md).
+
